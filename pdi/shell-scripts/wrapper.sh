@@ -61,6 +61,7 @@ if [[ $0 != ${BASH_SOURCE} ]]
     # WRAPPER_DIR=${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}
     WRAPPER_DIR=${BASH_SOURCE%/*}
   else
+    # There shouldn't really be a use case for running this script directly
     echo "Script is being run"
     WRAPPER_DIR="$( cd "$( /usr/bin/dirname "$0" )" && pwd )"
 fi
