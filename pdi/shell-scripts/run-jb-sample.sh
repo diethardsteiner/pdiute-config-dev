@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 set -e # makes all warnings errors
 set -u # makes usage of undefined variables an error
 # set -x # for debugging only - will show values of variables etc
