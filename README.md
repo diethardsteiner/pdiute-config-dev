@@ -37,6 +37,7 @@ cd pdiute-code
 mkdir -p pdi/jobs-and-transformations
 mkdir -p pdi/unit-test-datasets
 mkdir -p pdi/metastore
+mkdir -p pdi/sql
 mkdir -p pentaho-server/dashboards
 mkdir -p pentaho-server/mondrian
 mkdir -p pentaho-server/metadata
@@ -45,6 +46,7 @@ mkdir shell-scripts
 touch pdi/jobs-and-transformations/.gitignore
 touch pdi/unit-test-datasets/.gitignore
 touch pdi/metastore/.gitignore
+touch pdi/sql/.gitignore
 touch pentaho-server/dashboards/.gitignore
 touch pentaho-server/mondrian/.gitignore
 touch pentaho-server/metadata/.gitignore
