@@ -116,15 +116,17 @@ PROJECT_LOG_HOME="${PROJECT_GROUP_DIR}/logs/${PDI_ENV}"
 ## ~~~~~~~~~~~~~~~~~~~~~~~~ DO NOT CHANGE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~##
 ##
 
-# do not use `EXPORT` so not to set the env variable in the global context
+# `export` is valid in a session only and not globally
+# each crontab entry gets its own session
+
 # since code for different projects might run on the same server
 
 # path to PDI installation
 PDI_DIR=/home/dsteiner/apps/pdi-ce-8.1
 echo "PDI_DIR: ${PDI_DIR}"
-KETTLE_HOME=${PROJECT_CONFIG_DIR}/pdi
+export KETTLE_HOME=${PROJECT_CONFIG_DIR}/pdi
 echo "KETTLE_HOME: ${KETTLE_HOME}"
-PENTAHO_METASTORE_FOLDER=${PROJECT_CODE_DIR}/pdi
+export PENTAHO_METASTORE_FOLDER=${PROJECT_CODE_DIR}/pdi
 echo "PENTAHO_METASTORE_FOLDER: ${PENTAHO_METASTORE_FOLDER}"
 
 # ============== JOB-SPECIFIC CONFIGURATION PROPERTIES =============== #
