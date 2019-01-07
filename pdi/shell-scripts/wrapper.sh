@@ -53,10 +53,19 @@ fi
 # we have to get the path to this shell script from any location we execute this script from
 # and with both ./ and source
 # https://unix.stackexchange.com/questions/4650/determining-path-to-sourced-shell-script
-[[ $0 != ${BASH_SOURCE} ]] && echo "Script is being sourced" || echo "Script is being run"
+if [[ $0 != ${BASH_SOURCE} ]] 
+  then
+    echo "Script is being sourced"
+    # this didn't seem to work consistently across all versions of bash
+    # for both source and script approaches hence we use this if condition here
+    # WRAPPER_DIR=${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}
+    WRAPPER_DIR=${BASH_SOURCE%/*}
+  else
+    echo "Script is being run"
+    WRAPPER_DIR="$( cd "$( /usr/bin/dirname "$0" )" && pwd )"
+fi
 
-WRAPPER_DIR=${BASH_SOURCE[${#BASH_SOURCE[@]} - 1]}
-# WRAPPER_DIR="$( cd "$( /usr/bin/dirname "$0" )" && pwd )"
+
 # WRAPPER_DIR=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 echo "WRAPPER_DIR: ${WRAPPER_DIR}"
 
@@ -172,7 +181,7 @@ cd ${PDI_DIR}
 
 
 ./kitchen.sh \
--file="${PROJECT_CODE_PDI_DIR}/${JOB_HOME}/${JOB_NAME}.kjb" \
+-file="${PROJECT_CODE_PDI_DIR}/${JOB_HOME}/${JOB_NAME}" \
 >> ${PROJECT_LOG_HOME}/${JOB_LOG_FILE} 2>&1
 
 

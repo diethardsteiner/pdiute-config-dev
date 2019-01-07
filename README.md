@@ -13,12 +13,15 @@ This relies on following folder name conventions:
 - one top level group folder - no specific naming convention
 - within this folder:
   - one code folder: naming convention [project-acronym]-code, e.g. abc-code.
-  - one config folder by environment: naming convention [project-acronym]-config-[enviornment]
+  - one config folder by environment: naming convention [project-acronym]-config-[environment]
   - project-acronym: only letters, no dashes, underscores, space etc 
 
 # Setting up the Folder Structure
 
 You can use this simple script:
+
+- `pdi-unit-test-example` is the project group name here
+- `pdiute` is the project acronym here
 
 ```bash
 #!/bin/bash
