@@ -66,7 +66,7 @@ touch pentaho-server/.gitignore
 
 # Wrapper
 
-In the environment specific config repo you will find following script:
+In the environment specific config repo you will find following script: 
 
 ```
 pdi/shell-scripts/wrapper.sh
