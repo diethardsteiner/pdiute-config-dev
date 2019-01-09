@@ -65,6 +65,17 @@ touch pentaho-server/.gitignore
 ```
 
 
+For the config repo, add a `.gitignore` with at least following content:
+
+```
+pdi/.kettle/.languageChoice
+pdi/.kettle/.spoonrc
+pdi/.kettle/db.cache*
+pdi/.kettle/environment
+pdi/.kettle/shared.xml.backup
+```
+
+
 # Wrapper
 
 In the environment specific config repo you will find following script: 
