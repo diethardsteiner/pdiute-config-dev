@@ -125,9 +125,15 @@ PROJECT_LOG_HOME="${PROJECT_GROUP_DIR}/logs/${PDI_ENV}"
 PDI_DIR=/home/dsteiner/apps/pdi-ce-8.1
 echo "PDI_DIR: ${PDI_DIR}"
 export KETTLE_HOME=${PROJECT_CONFIG_DIR}/pdi
-echo "KETTLE_HOME: ${KETTLE_HOME}"
+# the below unit test parameters could be set in here as long as
+# they are added to the OPT section of spoon.sh
 export PENTAHO_METASTORE_FOLDER=${PROJECT_CODE_DIR}/pdi
 echo "PENTAHO_METASTORE_FOLDER: ${PENTAHO_METASTORE_FOLDER}"
+# path to the PDI unit test datasets
+export DATASETS_BASE_PATH=${PROJECT_CODE_DIR}/pdi/unit-test-datasets
+echo "DATASETS_BASE_PATH: ${DATASETS_BASE_PATH}"
+export UNIT_TESTS_BASE_PATH=${PROJECT_CODE_DIR}/pdi/jobs-and-transformations
+echo "UNIT_TESTS_BASE_PATH: ${UNIT_TESTS_BASE_PATH}"
 
 # ============== JOB-SPECIFIC CONFIGURATION PROPERTIES =============== #
 
