@@ -1,0 +1,5 @@
+pdi/.kettle/.languageChoice
+pdi/.kettle/.spoonrc
+pdi/.kettle/db.cache*
+pdi/.kettle/environment
+pdi/.kettle/shared.xml.backup
