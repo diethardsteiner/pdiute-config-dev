@@ -122,7 +122,7 @@ JOB_NAME="jb_sample.kjb"
 BASE_DIR="$( cd "$( /usr/bin/dirname "$0" )" && pwd )"
 echo "The run shell script is running from following directory: ${BASE_DIR}"
 # the repo name has to be the env name
-source ${BASE_DIR}/wrapper.sh ${JOB_PATH} ${JOB_NAME}
+${BASE_DIR}/wrapper.sh ${JOB_PATH} ${JOB_NAME}
 ```
 
 ## Configuration
