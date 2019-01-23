@@ -100,6 +100,8 @@ source pdi/shell-scripts/wrapper.sh
 
 This is mainly useful if you want to start **Spoon** from the **same shell** so that these config paths are correctly set.
 
+> **Note**: You have to define the **absolute path** to the `wrapper.sh` - calling the shell script with the relative path will result in a misconfigured environment.
+
 ### Define Environment For PDI Job
 
 The recommended pattern is that you create one shell file for each job that you want to execute and then source the `wrapper.sh`, passing along the **path** to the job and the **name** of the job.
@@ -122,7 +124,7 @@ JOB_NAME="jb_sample.kjb"
 BASE_DIR="$( cd "$( /usr/bin/dirname "$0" )" && pwd )"
 echo "The run shell script is running from following directory: ${BASE_DIR}"
 # the repo name has to be the env name
-source ${BASE_DIR}/wrapper.sh ${JOB_PATH} ${JOB_NAME}
+${BASE_DIR}/wrapper.sh ${JOB_PATH} ${JOB_NAME}
 ```
 
 ## Configuration
