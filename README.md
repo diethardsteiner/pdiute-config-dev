@@ -26,13 +26,16 @@ You can use this simple script:
 ```bash
 #!/bin/bash
 
+PROJECT_NAME=pdi-unit-test-example
+PROJECT_ACRONYM=pdiute
+
 # create project group folder
-mkdir pdi-unit-test-example
-cd pdi-unit-test-example
+mkdir ${PROJECT_NAME}
+cd ${PROJECT_NAME}
 
 # create project repo
-mkdir pdiute-code
-cd pdiute-code
+mkdir ${PROJECT_ACRONYM}-code
+cd ${PROJECT_ACRONYM}-code
 
 mkdir -p pdi/jobs-and-transformations
 mkdir -p pdi/unit-test-datasets
@@ -55,31 +58,28 @@ touch shell-scripts/.gitignore
 cd ..
 
 # create config repo
-mkdir pdiute-config-dev
-cd pdiute-config-dev
+mkdir ${PROJECT_ACRONYM}-config-dev
+cd ${PROJECT_ACRONYM}-config-dev
 
 mkdir -p pdi/shell-scripts
 touch pdi/shell-scripts/run-jb-sample.sh
 mkdir pentaho-server
 touch pentaho-server/.gitignore
-```
-
-
-For the config repo, add a `.gitignore` with at least following content:
-
-```
+# For the config repo, add a `.gitignore` with at least following content:
+cat >> .gitignore <<EOL
 pdi/.kettle/.languageChoice
 pdi/.kettle/.spoonrc
 pdi/.kettle/db.cache*
 pdi/.kettle/environment
 pdi/.kettle/shared.xml.backup
+EOL
 ```
 
 
 # Wrapper
 
 In the environment specific config repo you will find following script: 
- 
+
 ```
 pdi/shell-scripts/wrapper.sh
 ```
