@@ -130,3 +130,11 @@ ${BASE_DIR}/wrapper.sh ${JOB_PATH} ${JOB_NAME}
 ## Configuration
 
 A lot configuration details are automatically derived from the folder name pattern described earlier on. The only variable you have to manually change is `PDI_DIR`.
+
+## Picking up Parameters in a Job or Transformation
+
+The wrapper sets a few environment variables that are useful within PDI Jobs and Transformations as well. Just define them in your job or transformation settings as parameters and they will be passed on automatically:
+
+- `PROJECT_CONFIG_DIR`
+- `PROJECT_CODE_DIR`
+ 
