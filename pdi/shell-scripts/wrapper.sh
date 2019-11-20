@@ -160,24 +160,35 @@ mkdir -p ${PROJECT_LOG_HOME}
 
 echo "Location of log file: ${PROJECT_LOG_HOME}/${JOB_LOG_FILE}"
 
-cat > ${PROJECT_LOG_HOME}/${JOB_LOG_FILE} <<EOL
+# remove old log file
+if [ -f "${PROJECT_LOG_HOME}/${JOB_LOG_FILE}" ]
+then
+    echo "Removing old log file."
+    rm ${PROJECT_LOG_HOME}/${JOB_LOG_FILE}
+else
+    echo "No old log file exists ... so nothing to do."
+fi
 
-Starting at: ${START_DATETIME}
 
------------------------------------------------------------------------
-Running script with the following environment variables:
+# moved this further down since otherwise the kitchen logFile flag does not work
+# cat > ${PROJECT_LOG_HOME}/${JOB_LOG_FILE} <<EOL
 
-PDI Environment (PDI_ENV):                   ${PDI_ENV}
-Directory containing PDI installation:       ${PDI_DIR}
-Location of Kettle properties (KETTLE_HOME): ${KETTLE_HOME}
-Location of Kettle Metastore:                ${PENTAHO_METASTORE_FOLDER}
-Location of Project Configuration:           ${PROJECT_CONFIG_DIR}
-Location of Project Code:                    ${PROJECT_CODE_DIR}
-PDI Job Directory and Filename:              ${JOB_HOME}${JOB_NAME}
-Location of log file:                        ${PROJECT_LOG_HOME}/${JOB_LOG_FILE}
------------------------------------------------------------------------
+# Starting at: ${START_DATETIME}
 
-EOL
+# -----------------------------------------------------------------------
+# Running script with the following environment variables:
+
+# PDI Environment (PDI_ENV):                   ${PDI_ENV}
+# Directory containing PDI installation:       ${PDI_DIR}
+# Location of Kettle properties (KETTLE_HOME): ${KETTLE_HOME}
+# Location of Kettle Metastore:                ${PENTAHO_METASTORE_FOLDER}
+# Location of Project Configuration:           ${PROJECT_CONFIG_DIR}
+# Location of Project Code:                    ${PROJECT_CODE_DIR}
+# PDI Job Directory and Filename:              ${JOB_HOME}${JOB_NAME}
+# Location of log file:                        ${PROJECT_LOG_HOME}/${JOB_LOG_FILE}
+# -----------------------------------------------------------------------
+
+# EOL
 
 
 
@@ -192,13 +203,22 @@ cd ${PDI_DIR}
 
 ./kitchen.sh \
 -file="${PROJECT_CODE_PDI_DIR}/${JOB_HOME}/${JOB_NAME}" \
+-logfile=${PROJECT_LOG_HOME}/${JOB_LOG_FILE} \
 -param:PROJECT_CONFIG_DIR=${PROJECT_CONFIG_DIR} \
 -param:PROJECT_CODE_DIR=${PROJECT_CODE_DIR} \
 -param:JOB_LOG_FILE=${JOB_LOG_FILE} \
->> ${PROJECT_LOG_HOME}/${JOB_LOG_FILE} 2>&1
+-param:PDI_ENV=${PDI_ENV} \
+2>&1
 
 
 RES=$?
+
+END_DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
+END_UNIX_TIMESTAMP=`date "+%s"`
+echo
+echo "End DateTime: ${END_DATETIME}" >> ${PROJECT_LOG_HOME}/${JOB_LOG_FILE}
+
+cat >> ${PROJECT_LOG_HOME}/${JOB_LOG_FILE} <<EOL
 
 END_DATETIME=`date '+%Y-%m-%d_%H-%M-%S'`
 END_UNIX_TIMESTAMP=`date "+%s"`
