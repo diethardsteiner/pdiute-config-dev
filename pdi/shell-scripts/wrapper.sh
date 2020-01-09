@@ -200,6 +200,9 @@ fi
 
 cd ${PDI_DIR}
 
+# Note: the parameters passed here to the kitchen command have to be defined
+# as parameters in the Kettle/PDI job that gets called otherwise they won't
+# be passed on.
 
 ./kitchen.sh \
 -file="${PROJECT_CODE_PDI_DIR}/${JOB_HOME}/${JOB_NAME}" \
@@ -208,6 +211,7 @@ cd ${PDI_DIR}
 -param:PROJECT_CODE_DIR=${PROJECT_CODE_DIR} \
 -param:JOB_LOG_FILE=${JOB_LOG_FILE} \
 -param:PDI_ENV=${PDI_ENV} \
+-param:PROJECT_NAME=${PROJECT_NAME} \
 2>&1
 
 
